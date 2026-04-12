@@ -13,11 +13,21 @@ ChatTongyi -> BaseChatModel -> BaseLanguageModel -> RunnableSerializable -> Runn
 """
 
 
-template = PromptTemplate.from_template("我的邻居是：{lastname}，最喜欢：{hobby}")
+# template = PromptTemplate.from_template("我的邻居是：{lastname}，最喜欢：{hobby}")
 
-res = template.format(lastname="张大明", hobby="钓鱼")
+# res = template.format(lastname="张大明", hobby="钓鱼")
+# print(res, type(res))
+
+
+# res2 = template.invoke({"lastname": "周杰轮", "hobby": "唱歌"})
+# print(res2, type(res2))
+
+
+template = PromptTemplate.from_template("我的邻居是{lastname}, 最喜欢{hobby}")
+
+res = template.format(lastname="张三", hobby="钓鱼")
+
 print(res, type(res))
 
-
-res2 = template.invoke({"lastname": "周杰轮", "hobby": "唱歌"})
+res2 = template.invoke({"lastname": "周杰伦", "hobby": "唱歌"})
 print(res2, type(res2))
