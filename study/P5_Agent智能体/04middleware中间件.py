@@ -57,7 +57,7 @@ def monitor_tool(request, handler):
 
 
 agent = create_agent(
-    model=ChatTongyi(model="qwen3-max"),
+    model=ChatTongyi(model="qwen3-max"),    # type: ignore
     tools=[get_weather],
     middleware=[log_before_agent, log_after_agent, log_before_model, log_after_model, model_call_hook, monitor_tool]
 )

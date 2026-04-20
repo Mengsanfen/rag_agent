@@ -34,7 +34,7 @@ class RagService(object):
             ]
         )
 
-        self.chat_model = ChatTongyi(model=config.chat_model_name)
+        self.chat_model = ChatTongyi(model=config.chat_model_name)  # type:ignore
 
         self.chain = self.__get_chain()
 
@@ -63,13 +63,18 @@ class RagService(object):
             new_value["history"] = value["input"]["history"]
             return new_value
 
+        # chain = (
+        #     {
+        #         "input": RunnablePassthrough(),
+        #         "context": RunnableLambda(format_for_retriever) | retriever | format_document
+        #     } | RunnableLambda(format_for_prompt_template) | self.prompt_template | print_prompt | self.chat_model | StrOutputParser()
+        # )
         chain = (
             {
                 "input": RunnablePassthrough(),
                 "context": RunnableLambda(format_for_retriever) | retriever | format_document
-            } | RunnableLambda(format_for_prompt_template) | self.prompt_template | print_prompt | self.chat_model | StrOutputParser()
+            } | RunnableLambda(format_for_prompt_template) | self.prompt_template | self.chat_model | StrOutputParser()
         )
-
         conversation_chain = RunnableWithMessageHistory(
             chain,
             get_history,
@@ -88,6 +93,5 @@ if __name__ == '__main__':
         }
     }
 
-    res = RagService().chain.invoke({"input": "针织毛衣如何保养？"}, session_config)
+    res = RagService().chain.invoke({"input": "针织毛衣如何保养？"}, session_config)    # type:ignore
     print(res)
-

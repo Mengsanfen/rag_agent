@@ -14,7 +14,7 @@ def get_height() -> int:
 
 
 agent = create_agent(
-    model=ChatTongyi(model="qwen3-max"),
+    model=ChatTongyi(model="qwen3-max"),    # type: ignore
     tools=[get_weight, get_height],
     system_prompt="""你是严格遵循ReAct框架的智能体，必须按「思考→行动→观察→再思考」的流程解决问题，
     且**每轮仅能思考并调用1个工具**，禁止单次调用多个工具。
