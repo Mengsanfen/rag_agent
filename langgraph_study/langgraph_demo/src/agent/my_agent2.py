@@ -2,7 +2,7 @@ from langgraph.prebuilt import create_react_agent
 from agent.my_llm import llm
 from langchain_openai import ChatOpenAI
 from agent.tools.tool_demo5 import runnable_tool
-from agent.my_agent import my_search_tool
+from langgraph_study.langgraph_demo.src.agent.mcp_agent import my_search_tool
 from langchain_core.messages import AnyMessage, SystemMessage
 from langchain_core.runnables import RunnableConfig 
 from langgraph.prebuilt.chat_agent_executor import AgentState
@@ -51,5 +51,3 @@ with (
         {"messages": [{"role": "user", "content": "根据上段话，再来个反面的回答"}]},
         config, # type: ignore
     )
-
-
