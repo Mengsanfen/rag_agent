@@ -10,8 +10,6 @@ python_mcp_config = {
     'url': 'http://127.0.0.1:5000/sse',
     'transport': 'sse',
 }
-
-
 mcp_client = MultiServerMCPClient(
     {
         'python_mcp': python_mcp_config,    # type: ignore
