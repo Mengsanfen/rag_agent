@@ -57,7 +57,7 @@ app = workflow.compile()
 result = app.invoke({"user_role": "高校学生"})
 
 # 9. 输出
-print("原始学习建议：")
+print("原始学习建议：")  
 print(result["original_advice"])
 print("\n精简后学习建议：")
 print(result["simplified_advice"])
